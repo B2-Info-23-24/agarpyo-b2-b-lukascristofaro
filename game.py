@@ -4,13 +4,14 @@ from food import Food
 from obstacle import Obstacle
 
 class Game:
-    def __init__(self, difficulty):
+    def __init__(self, difficulty, mode):
         pygame.init()
         self.width = 1280
         self.height = 720
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.fps = 60
         self.difficulty = difficulty
+        self.mode = mode
 
         self.player_position = [self.width // 2, self.height // 2]
         self.player = Player(self.player_position, self.fps)
@@ -29,7 +30,10 @@ class Game:
                     game_started = False
 
             keys = pygame.key.get_pressed()
-            self.player.move(keys)
+            if self.mode == "keyboard":
+                self.player.move_keyboard(keys, self.width, self.height)
+            else :
+                self.player.move_mouse(self.width, self.height)
 
             self.player.check_collision(self.difficulty, self.entities)
 
@@ -41,5 +45,7 @@ class Game:
             pygame.display.flip()
 
             self.clock.tick(self.fps)
+            if keys[pygame.K_q]:
+                game_started = False
 
         pygame.quit()
