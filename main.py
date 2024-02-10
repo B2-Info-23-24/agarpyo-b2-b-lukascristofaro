@@ -10,7 +10,5 @@ if __name__ == "__main__":
     if param[0] == "quit":
         sys.exit()
 
-    print(param)
-
     game = Game(param[1], param[0])
     game.mainLoop()
