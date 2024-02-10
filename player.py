@@ -2,6 +2,7 @@ import pygame
 from entity import Entity
 from food import Food
 from obstacle import Obstacle
+import math
 
 class Player(Entity):
     def __init__(self, position, fps):
@@ -10,15 +11,29 @@ class Player(Entity):
         self.position = position
         self.gameFps = fps
         
-    def move(self, keys):
+    def move_keyboard(self, keys, screen_width, screen_height):
+        dx = 0
+        dy = 0
+
         if keys[pygame.K_LEFT]:
-            self.position[0] -= self.speed / self.gameFps
+            dx = -self.speed / self.gameFps
         if keys[pygame.K_RIGHT]:
-            self.position[0] += self.speed / self.gameFps
+            dx = self.speed / self.gameFps
         if keys[pygame.K_UP]:
-            self.position[1] -= self.speed / self.gameFps
+            dy = -self.speed / self.gameFps
         if keys[pygame.K_DOWN]:
-            self.position[1] += self.speed / self.gameFps
+            dy = self.speed / self.gameFps
+
+
+        self.position[0] += dx
+        self.position[1] += dy
+
+        self.position[0] = self.position[0] % screen_width
+        self.position[1] = self.position[1] % screen_height
+
+
+    def move_mouse(self, screen_width, screen_height):
+        pass
 
     def eat(self):
         if self.speed < 500:
