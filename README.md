@@ -25,6 +25,7 @@ Navigate to the project directory.
 cd agarpyo-b2-b-lukascristofaro
 ```
 
+Create a file named environement.yml whith this following content
 ```
 name: agarpyo
 channels:
@@ -50,7 +51,7 @@ dependencies:
 ```
 
 
-Create and activate a virtual environment from an environment.yml import file
+Create and activate a virtual environment from an environement.yml import file
 
 ```bash
 conda env create -f environment.yml
