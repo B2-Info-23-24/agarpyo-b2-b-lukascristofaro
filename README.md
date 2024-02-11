@@ -54,7 +54,7 @@ Create and activate a virtual environment from an environment.yml import file
 
 ```bash
 conda env create -f environment.yml
-conda activate your-environment-name
+conda activate agarpyo
 ```
 
 ## Utilisation
