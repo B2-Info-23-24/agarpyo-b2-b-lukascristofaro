@@ -19,4 +19,3 @@ dependencies:
   - zlib=1.2.13=h8cc25b3_0
   - pip:
       - pygame==2.5.2
-prefix: C:\Users\luluc\anaconda3\envs\agarpyo
