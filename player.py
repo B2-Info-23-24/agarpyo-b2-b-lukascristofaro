@@ -45,7 +45,7 @@ class Player(Entity):
         self.size = self.size // difficulty
         self.speed = self.speed // difficulty
 
-    def check_collision(self, difficulty, other_entities):
+    def check_collision(self, difficulty, other_entities, score):
             for entity in other_entities:
                 distance = pygame.math.Vector2(self.position[0] - entity.position[0],
                                             self.position[1] - entity.position[1]).length()
@@ -54,10 +54,11 @@ class Player(Entity):
                     if isinstance(entity, Food):
                         self.eat()
                         entity.respawn()
+                        score += 1
 
                     if isinstance(entity, Obstacle):
                         if entity.getSize() < self.size:
                             self.hurt(difficulty)
                             entity.respawn()
                         
-
+            return score
