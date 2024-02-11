@@ -3,12 +3,13 @@ from menu import Menu
 import sys
 
 if __name__ == "__main__":
-    menu = Menu()
+    while True:
+        menu = Menu()
 
-    param = menu.run()
+        param = menu.run()
 
-    if param[0] == "quit":
-        sys.exit()
+        if param[0] == "quit":
+            sys.exit()
 
-    game = Game(param[1], param[0])
-    game.mainLoop()
+        game = Game(param[1], param[0])
+        game.mainLoop()

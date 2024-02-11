@@ -1,7 +1,11 @@
 import pygame
+import time
+import sys
+
 from player import Player
 from food import Food
 from obstacle import Obstacle
+
 
 class Game:
     def __init__(self, difficulty, mode):
@@ -15,6 +19,7 @@ class Game:
         self.font = pygame.font.Font(None, 24)
 
         self.score = 0
+        self.gameTime = 60
 
         self.player_position = [self.width // 2, self.height // 2]
         self.player = Player(self.player_position, self.fps)
@@ -26,13 +31,19 @@ class Game:
 
 
     def mainLoop(self):
+        start_ticks=pygame.time.get_ticks()
         game_started = True
         while game_started:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     game_started = False
 
+            seconds=(pygame.time.get_ticks()-start_ticks)//1000
+            time_left = 60 - seconds
 
+            if time_left <= 0:
+                time_left = 0
+                game_started = False
 
 
             keys = pygame.key.get_pressed()
@@ -48,17 +59,18 @@ class Game:
             for i in self.entities:
                 i.draw(self.screen)
 
-           
-            self.create_scorboard()
+            self.create_scorboard(time_left)
             pygame.display.flip()
 
             self.clock.tick(self.fps)
-            if keys[pygame.K_q]:
+            if keys[pygame.K_ESCAPE]:
                 game_started = False
+            if keys[pygame.K_q]:
+                sys.exit()
 
         pygame.quit()
 
-    def create_scorboard(self):
+    def create_scorboard(self, time_left):
         text_score = self.font.render("Score : " + str(self.score), 1, (0, 0, 0))
         self.screen.blit(text_score, (20, 20))
 
@@ -79,3 +91,11 @@ class Game:
 
         text_difficulty = self.font.render("Difficulty : " + string_difficulty, 1, (0, 0, 0))
         self.screen.blit(text_difficulty, (20, 80))
+
+        text_time = self.font.render("Time left : " + str(time_left), 1, (0, 0, 0))
+        self.screen.blit(text_time, (1150, 20))
+
+    def game_time(self):
+        while self.gameTime:
+            time.sleep(1)
+            self.gameTime -= 1

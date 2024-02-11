@@ -67,7 +67,8 @@ class Menu:
 
                 if param[0] != "":
                     return param
-
+                
+            self.screen.fill((255, 255, 255))
             self.draw_buttons()
             clock.tick(60)
 
