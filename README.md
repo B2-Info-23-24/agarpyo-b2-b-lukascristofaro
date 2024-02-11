@@ -27,6 +27,7 @@ cd agarpyo-b2-b-lukascristofaro
 ```
 
 Create a file named environement.yml whith this following content
+(you can find him in the repository file)
 ```
 name: agarpyo
 channels:
