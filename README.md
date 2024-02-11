@@ -9,7 +9,8 @@ it takes the game agar.io but in python
 
 Make sure you have the specified versions of the following packages installed on your system, as well as Python.
 
-- Python (version used for development: 3.8.5)
+- Python (version used for development: 3.10.13)
+- Anaconda Navigator
 
 ## Installation
 
